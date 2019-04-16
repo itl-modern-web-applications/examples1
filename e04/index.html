@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>Example 4</title>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  table {
+    width: 90%;
+    margin: 10px auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid black;
+  }
+</style>
+
+<h1>Star Wars heroes and planets</h1>
+
+<div id="app">
+  <my-table
+    :columns="{
+      name: 'Name',
+      gender: 'Gender',
+      birth_year: 'Birth year'
+    }"
+    :data="heroes"
+  ></my-table>
+
+  <my-table
+    :columns="{
+      name: 'Name',
+      climate: 'Climate',
+      terrain: 'Terrain'
+    }"
+    :data="planets"
+  ></my-table>
+</div>
+
+<template id="my-table">
+  <table>
+    <thead>
+      <tr>
+        <th v-for="column in columns">
+          {{ column }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="row in data">
+        <td v-for="(value, key) in columns">
+          {{ row[key] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+
+<script>
+  Vue.component('my-table', {
+    template: '#my-table',
+
+    props: [
+      'columns',
+      'data'
+    ]
+  })
+
+  new Vue({
+    el: '#app',
+
+    data () {
+      return {
+        heroes: [],
+        planets: []
+      }
+    },
+
+    created () {
+      fetch('https://swapi.co/api/people')
+        .then(response => response.json())
+        .then(({ results }) => (this.heroes = results))
+
+      fetch('https://swapi.co/api/planets')
+        .then(response => response.json())
+        .then(({ results }) => (this.planets = results))
+    }
+  })
+</script>

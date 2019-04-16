@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>Example 6</title>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/animate.css@^3.5.2/animate.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/quasar-framework@0.17.20/dist/umd/quasar.mat.min.css" rel="stylesheet">
+
+<h1 class="text-center">Star Wars heroes and planets</h1>
+
+<div id="app">
+  <q-table
+    :columns="[
+      {name: 'name', label: 'Name', align: 'left', field: 'name', sortable: true},
+      {name: 'gender', label: 'Gender', align: 'left', field: 'gender', sortable: true},
+      {name: 'birth_year', label: 'Birth year', align: 'left', field: 'birth_year', sortable: true}
+    ]"
+    :data="heroes"
+    row-key="name"
+  ></q-table>
+
+  <q-table
+    :columns="[
+      {name: 'name', label: 'Name', align: 'left', field: 'name', sortable: true},
+      {name: 'climate', label: 'Climate', align: 'left', field: 'climate', sortable: true},
+      {name: 'terrain', label: 'Terrain', align: 'left', field: 'terrain', sortable: true}
+    ]"
+    :data="planets"
+    row-key="name"
+  ></q-table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quasar-framework@0.17.20/dist/umd/quasar.mat.umd.min.js"></script>
+
+<script>
+  new Vue({
+    el: '#app',
+
+    data () {
+      return {
+        heroes: [],
+        planets: []
+      }
+    },
+
+    created () {
+      fetch('https://swapi.co/api/people')
+        .then(response => response.json())
+        .then(({ results }) => (this.heroes = results))
+
+      fetch('https://swapi.co/api/planets')
+        .then(response => response.json())
+        .then(({ results }) => (this.planets = results))
+    }
+  })
+</script>

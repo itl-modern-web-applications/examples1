@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>Example 1</title>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  #people, #planets {
+    width: 90%;
+    margin: 10px auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  #people th, #people td,
+  #planets th, #planets td {
+    border: 1px solid black;
+  }
+</style>
+
+<h1>Star Wars heroes and planets</h1>
+
+<table id="people">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Birth year</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<table id="planets">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Climate</th>
+      <th>Terrain</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  const peopleMountpoint = 'https://swapi.co/api/people'
+  const planetsMountpoint = 'https://swapi.co/api/planets'
+
+  const peopleTable = document.querySelector('#people tbody')
+  const planetsTable = document.querySelector('#planets tbody')
+
+  fetch(peopleMountpoint)
+    .then(response => response.json())
+    .then(json_result => {
+      results = json_result.results
+      results.forEach(({ name, gender, birth_year }) => {
+        const row = document.createElement('tr')
+
+        const nameCell = document.createElement('td')
+        const genderCell = document.createElement('td')
+        const birth_yearCell = document.createElement('td')
+
+        nameCell.textContent = name
+        genderCell.textContent = gender
+        birth_yearCell.textContent = birth_year
+
+        row.appendChild(nameCell)
+        row.appendChild(genderCell)
+        row.appendChild(birth_yearCell)
+
+        peopleTable.appendChild(row)
+    })
+  })
+
+  fetch(planetsMountpoint)
+    .then(response => response.json())
+    .then(({ results }) => {
+      results.forEach(({ name, climate, terrain }) => {
+        const row = document.createElement('tr')
+
+        const nameCell = document.createElement('td')
+        const climateCell = document.createElement('td')
+        const terrainCell = document.createElement('td')
+
+        nameCell.textContent = name
+        climateCell.textContent = climate
+        terrainCell.textContent = terrain
+
+        row.appendChild(nameCell)
+        row.appendChild(climateCell)
+        row.appendChild(terrainCell)
+
+        planetsTable.appendChild(row)
+    })
+  })
+</script>
