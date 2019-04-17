@@ -1,0 +1,34 @@
+{
+    "eslint.validate": [
+    {
+      "language": "html",
+      "autoFix": true
+    },
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
+  
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  
+  "window.zoomLevel": -1,
+  
+  "vetur.format.defaultFormatterOptions": {
+    "prettyhtml": {
+      "singleQuote": false // Prefer double quotes over single quotes
+    },
+    "prettier": {
+      "semi": false // Do not add semicolons at the end of line
+    }
+  },
+  "vetur.format.options.tabSize": 2,
+  "vetur.format.options.useTabs": false
+}
