@@ -1,32 +1,19 @@
 <template>
-  <div class="main">
-    <div class="products">
-      <ul>
-        <h2>Products</h2>
-        <product-item
-          class="item"
-          :item="products"
-          @make-folder="makeFolder"
-          @add-item="addItem"
-        />
-      </ul>
-    </div>
-    <product-view />
-    <product-form />
-  </div>
+  <product-item
+    class="view"
+    :item="products"
+    @make-folder="makeFolder"
+    @add-item="addItem"
+  />
 </template>
 
 <script>
 import ProductItem from '@/components/ProductItem'
-import ProductView from '@/components/ProductView'
-import ProductForm from '@/components/ProductForm'
 
 export default {
-  name: 'App',
+  name: 'ProductView',
   components: {
-    ProductItem,
-    ProductView,
-    ProductForm
+    ProductItem
   },
   data () {
     return {
@@ -58,13 +45,5 @@ export default {
 </script>
 
 <style>
-body {
-  margin: 0em;
-  font-family: Menlo, Consolas, monospace;
-  color: #444;
-}
-.products {
-  width: 20%;
-  margin: 1em;
-}
+
 </style>
