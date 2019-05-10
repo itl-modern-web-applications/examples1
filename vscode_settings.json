@@ -1,5 +1,5 @@
 {
-    "eslint.validate": [
+  "eslint.validate": [
     {
       "language": "html",
       "autoFix": true
@@ -15,20 +15,18 @@
   ],
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
-  
+
+  "editor.formatOnSave": true,
+
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  
+
   "window.zoomLevel": -1,
-  
-  "vetur.format.defaultFormatterOptions": {
-    "prettyhtml": {
-      "singleQuote": false // Prefer double quotes over single quotes
-    },
-    "prettier": {
-      "semi": false // Do not add semicolons at the end of line
-    }
-  },
+
+  "vetur.validation.template": false,
+
   "vetur.format.options.tabSize": 2,
-  "vetur.format.options.useTabs": false
+  "vetur.format.options.useTabs": false,
+
+  "vetur.completion.useScaffoldSnippets": false
 }
