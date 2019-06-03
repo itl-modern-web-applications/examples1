@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <title>Example 2</title>
 
 <style>
@@ -8,15 +8,18 @@
     text-align: center;
   }
 
-  #people, #planets {
+  #people,
+  #planets {
     width: 90%;
     margin: 10px auto;
     border: 1px solid black;
     border-collapse: collapse;
   }
 
-  #people th, #people td,
-  #planets th, #planets td {
+  #people th,
+  #people td,
+  #planets th,
+  #planets td {
     border: 1px solid black;
   }
 </style>
@@ -48,26 +51,26 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
-  const peopleMountpoint = 'https://swapi.co/api/people'
-  const planetsMountpoint = 'https://swapi.co/api/planets'
+  const peopleMountpoint = 'https://swapi.co/api/people';
+  const planetsMountpoint = 'https://swapi.co/api/planets';
 
   $.getJSON(peopleMountpoint).done(({ results }) => {
     $(results).each((index, { name, gender, birth_year }) => {
-      const $row = $('<tr></tr>')
-        .append(`<td>${name}</td>`)
-        .append(`<td>${gender}</td>`)
-        .append(`<td>${birth_year}</td>`)
-      $('#people tbody').append($row)
-    })
-  })
+      const $row = $('<tr>')
+        .append($('<td>', { text: name }))
+        .append($('<td>', { text: gender }))
+        .append($('<td>', { text: birth_year }));
+      $('#people tbody').append($row);
+    });
+  });
 
   $.getJSON(planetsMountpoint).done(({ results }) => {
     $(results).each((index, { name, climate, terrain }) => {
-      const $row = $('<tr></tr>')
-        .append(`<td>${name}</td>`)
-        .append(`<td>${climate}</td>`)
-        .append(`<td>${terrain}</td>`)
-      $('#planets tbody').append($row)
-    })
-  })
+      const $row = $('<tr>')
+        .append($('<td>', { text: name }))
+        .append($('<td>', { text: climate }))
+        .append($('<td>', { text: terrain }));
+      $('#planets tbody').append($row);
+    });
+  });
 </script>
